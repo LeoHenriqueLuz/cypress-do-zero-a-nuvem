@@ -30,12 +30,35 @@ describe('Central de Atendimento ao Cliente', () => {
     cy.get('.error').should('be.visible')
   })
 
-  it.only('Exibir mensagem de erro para campo Telefone preenchido com caracter inválido', () => {
+  it('Exibir mensagem de erro para campo Telefone preenchido com caracter inválido', () => {
     cy.get('#phone')
     .type('noveoitoseteseiscincoquatrotresdoisum')
     .should('have.visible','')
   })
 
+  it('Exibir mensagem de erro para campo Telefone preenchido com caracter inválido', () => {
+    cy.get('#phone')
+    .type('noveoitoseteseiscincoquatrotresdoisum')
+    .should('have.visible','')
+  })
 
-})
+  it.only('Preencher e limpar os campos: Nome, Sobrenome, Email e Telefone', () => {
+  cy.get('#firstName').type('Leonardo Henrique')
+    .should('have.value', 'Leonardo Henrique')
+    .clear().should('have.value', '')
+
+  cy.get('#lastName').type('Luz Marciano')
+    .should('have.value', 'Luz Marciano')
+    .clear().should('have.value', '')
+
+  cy.get('#email').type('Leo@teste.com')
+    .should('have.value', 'Leo@teste.com')
+    .clear().should('have.value', '')
+
+  cy.get('#phone').type('1199999999')
+    .should('have.value', '1199999999')
+    .clear().should('have.value', '')
+  })
+
+  })
 
