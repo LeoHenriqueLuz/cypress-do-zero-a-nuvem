@@ -6,7 +6,7 @@ describe('Central de Atendimento ao Cliente', () => {
   it('verificar o titulo da aplicação', () => {
     cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
   })
-  it.only('Prencher campos obrigatórios e enviar formulário', () => {
+  it('Prencher campos obrigatórios e enviar formulário', () => {
     cy.get('#firstName').type('Leonardo Henrique')
     cy.get('#lastName').type('Luz Marciano')
     cy.get('#email').type('Leo@teste.com')
@@ -17,6 +17,17 @@ describe('Central de Atendimento ao Cliente', () => {
     cy.get('button[type = "submit"]').click()
 
     cy.get('.success').should('be.visible')
+  })
+
+  it.only('Exibir mensagem de erro ao submeter formulário com formatação inválida', () => {
+    cy.get('#firstName').type('Leonardo Henrique')
+    cy.get('#lastName').type('Luz Marciano')
+    cy.get('#email').type('Leoteste.com')
+    cy.get('#phone').type('1199999999')
+    cy.get('#open-text-area').type('Cypress é top!')
+    cy.get('button[type = "submit"]').click()
+
+    cy.get('.error').should('be.visible')
   })
 
 })
