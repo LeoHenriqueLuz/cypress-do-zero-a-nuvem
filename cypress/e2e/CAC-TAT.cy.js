@@ -19,7 +19,7 @@ describe('Central de Atendimento ao Cliente', () => {
     cy.get('.success').should('be.visible')
   })
 
-  it.only('Exibir mensagem de erro ao submeter formulário com formatação inválida', () => {
+  it('Exibir mensagem de erro ao submeter formulário com formatação inválida', () => {
     cy.get('#firstName').type('Leonardo Henrique')
     cy.get('#lastName').type('Luz Marciano')
     cy.get('#email').type('Leoteste.com')
@@ -29,6 +29,13 @@ describe('Central de Atendimento ao Cliente', () => {
 
     cy.get('.error').should('be.visible')
   })
+
+  it.only('Exibir mensagem de erro para campo Telefone preenchido com caracter inválido', () => {
+    cy.get('#phone')
+    .type('noveoitoseteseiscincoquatrotresdoisum')
+    .should('have.visible','')
+  })
+
 
 })
 
